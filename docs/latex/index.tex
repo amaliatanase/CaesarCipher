@@ -1,0 +1,78 @@
+\chapter{Caesar Cipher Breaker 🕵️‍♂️🔍 }
+\hypertarget{index}{}\label{index}\index{Caesar Cipher Breaker 🕵️‍♂️🔍@{Caesar Cipher Breaker 🕵️‍♂️🔍}}
+\label{index_md__r_e_a_d_m_e}%
+\Hypertarget{index_md__r_e_a_d_m_e}%
+
+
+{\bfseries{Professional C tool}} for encryption, decryption and {\bfseries{automatic breaking}} of the Caesar Cipher using statistical frequency analysis + 3 different distance metrics.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{🚀 Features}{🚀 Features}}\label{index_autotoc_md1}
+
+\begin{DoxyItemize}
+\item 📥 {\bfseries{Versatile input}} — keyboard or file (supports large texts)
+\item 🔑 {\bfseries{Manual encrypt/\+decrypt}} with known shift
+\item 📊 {\bfseries{Real-\/time frequency analysis}} — letter distribution histogram
+\item 🤖 {\bfseries{Fully automatic decryption}} (no known key) using {\bfseries{three metrics}}:\+
+\begin{DoxyEnumerate}
+\item {\bfseries{Chi-\/\+Squared}} (χ²) — most accurate in most cases
+\item {\bfseries{Euclidean}} (L₂ norm)
+\item {\bfseries{Cosine}} distance — shape similarity
+\end{DoxyEnumerate}
+\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{📋 Prerequisites}{📋 Prerequisites}}\label{index_autotoc_md2}
+
+\begin{DoxyItemize}
+\item A C compiler (e.\+g., {\bfseries{GCC}}, {\bfseries{Clang}}, or the one included in {\bfseries{Xcode/\+\+Code::\+\+Blocks}}).
+\item {\bfseries{distribution.\+txt}}:\+ This file must be in the project root. It should contain 26 floating-\/point numbers representing the expected frequencies of letters \textquotesingle{}A\textquotesingle{} through \textquotesingle{}Z\textquotesingle{} in English.
+\end{DoxyItemize}\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{🛠 Compilation and Execution}{🛠 Compilation and Execution}}\label{index_autotoc_md3}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Open your terminal/\+command prompt in the project directory.}}
+\item {\bfseries{Compile the source code:\+}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ gcc\ main.c\ -\/o\ caesar\_breaker\ -\/lm}
+\DoxyCodeLine{}
+\DoxyCodeLine{3.\ **Run\ the\ program:**}
+
+\end{DoxyCode}
+ bash ./\+caesar\+\_\+breaker
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{📚 Documentation (Doxygen)}{📚 Documentation (Doxygen)}}\label{index_autotoc_md4}
+{\bfseries{The project is fully documented using Doxygen, providing detailed explanations for all functions, parameters, and algorithms used.}} {\bfseries{To generate the documentation:\+}}
+\begin{DoxyEnumerate}
+\item {\bfseries{Make sure Doxygen is installed.}}
+\item {\bfseries{Run:\+}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ doxygen\ Doxyfile}
+\DoxyCodeLine{3.\ **Open\ the\ generated\ documentation:**}
+
+\end{DoxyCode}
+ bash html/\+index.\+html {\bfseries{The documentation includes:\+}}
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item Function descriptions and parameters
+\item Algorithm explanations
+\item Code structure overview
+\end{DoxyItemize}\hypertarget{index_autotoc_md5}{}\doxysection{\texorpdfstring{🧪 Testing \& Analysis}{🧪 Testing \& Analysis}}\label{index_autotoc_md5}
+{\bfseries{The system was tested using texts of varying lengths and different shift values to evaluate the performance of each distance metric.}}
+
+{\bfseries{Methodology}}
+\begin{DoxyItemize}
+\item Short texts (10–20 characters)
+\item Long texts (200+ characters)
+\item Multiple shifts (e.\+g., 5, 13, random values)
+\item All three metrics applied to each case
+\end{DoxyItemize}
+
+{\bfseries{Observations}}
+\begin{DoxyItemize}
+\item Text length is critical:\+ Short texts often lead to incorrect decryption due to unreliable frequency distributions, while long texts significantly improve accuracy.
+\item Chi-\/\+Squared Distance:\+ Most accurate overall, especially for longer texts. Best at detecting correct shifts.
+\item Euclidean Distance:\+ Performs well but slightly less precise than Chi-\/\+Squared.
+\item Cosine Distance:\+ Least reliable, sometimes identifies similar patterns but fails to detect the exact shift.
+\end{DoxyItemize}
+
+{\bfseries{Errors \& Edge Cases}} Decryption may fail in:\+
+\begin{DoxyItemize}
+\item Very short texts
+\item Repetitive texts (e.\+g., "{}\+AAAAAA"{})
+\item Texts with unusual letter distributions (missing common letters like \textquotesingle{}E\textquotesingle{} or \textquotesingle{}T\textquotesingle{}) These cases distort frequency analysis and reduce accuracy. 
+\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysection{\texorpdfstring{Conclusion}{Conclusion}}\label{index_autotoc_md6}
+{\bfseries{Chi-\/\+Squared Distance is the most effective method in most scenarios, particularly for longer and more representative texts. However, all methods depend heavily on text quality and length. This demonstrates that frequency analysis is powerful but not infallible, especially when applied to small or non-\/standard datasets.}}\hypertarget{index_autotoc_md7}{}\doxysection{\texorpdfstring{👤 Author}{👤 Author}}\label{index_autotoc_md7}
+Tanase Amalia -\/ Elena 
