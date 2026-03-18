@@ -1,0 +1,296 @@
+\doxysection{main.\+c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{main.c@{main.c}}
+
+
+Utility for encrypting, decrypting, and breaking Caesar ciphers using frequency analysis.  
+
+
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \+\#include $<$string.\+h$>$}\newline
+{\ttfamily \+\#include $<$math.\+h$>$}\newline
+{\ttfamily \+\#include $<$ctype.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8c_a6572f1706059832f94025fa12c6c45ed}\label{main_8c_a6572f1706059832f94025fa12c6c45ed} 
+\+\#define {\bfseries ALPHABET\+\_\+\+SIZE}~26
+\begin{DoxyCompactList}\small\item\em Size of the standard English alphabet. \end{DoxyCompactList}\item 
+\Hypertarget{main_8c_abc29bd331bb97f02ae2320419301b88c}\label{main_8c_abc29bd331bb97f02ae2320419301b88c} 
+\+\#define {\bfseries TOP\+\_\+N}~3
+\begin{DoxyCompactList}\small\item\em Number of top-\/scoring shifts to track during frequency analysis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8c_a1998cf7434a04b1de2e6065d92db4059}\label{main_8c_a1998cf7434a04b1de2e6065d92db4059} 
+typedef double(\texorpdfstring{$\ast$}{*} {\bfseries Distance\+Func}) (const double\+[$\,$]\+, const double\+[$\,$]\+)
+\begin{DoxyCompactList}\small\item\em Function pointer type for distance calculation metrics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{main_8c_a569ba2b1701b459754653701d8a49998}{clear\+\_\+input\+\_\+buffer}} ()
+\begin{DoxyCompactList}\small\item\em Clears the standard input buffer (stdin). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8c_ace401e6e59af27a274ccf31789b68369}{read\+\_\+distribution}} (const char \texorpdfstring{$\ast$}{*}filename, double distribution\+[\doxymbox{\hyperlink{main_8c_a6572f1706059832f94025fa12c6c45ed}{ALPHABET\+\_\+\+SIZE}}]\+)
+\begin{DoxyCompactList}\small\item\em Reads the standard letter distribution from a text file. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8c_aedaa2b62cc091ba4e2b54adc0bcdbc1a}{compute\+\_\+histogram}} (const char \texorpdfstring{$\ast$}{*}text, double histogram\+[\doxymbox{\hyperlink{main_8c_a6572f1706059832f94025fa12c6c45ed}{ALPHABET\+\_\+\+SIZE}}]\+)
+\begin{DoxyCompactList}\small\item\em Calculates the normalized frequency of each letter (a-\/z) in a given text. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{main_8c_a69e48d421f6d0fe2798a19a1252fac62}{chi\+\_\+squared\+\_\+distance}} (const double hist1\+[\doxymbox{\hyperlink{main_8c_a6572f1706059832f94025fa12c6c45ed}{ALPHABET\+\_\+\+SIZE}}]\+, const double hist2\+[\doxymbox{\hyperlink{main_8c_a6572f1706059832f94025fa12c6c45ed}{ALPHABET\+\_\+\+SIZE}}]\+)
+\begin{DoxyCompactList}\small\item\em Calculates the Chi-\/\+Squared discrepancy between two frequency distributions. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{main_8c_a9ad23485c26e8007f42ad0468278d780}{euclidean\+\_\+distance}} (const double hist1\+[\doxymbox{\hyperlink{main_8c_a6572f1706059832f94025fa12c6c45ed}{ALPHABET\+\_\+\+SIZE}}]\+, const double hist2\+[\doxymbox{\hyperlink{main_8c_a6572f1706059832f94025fa12c6c45ed}{ALPHABET\+\_\+\+SIZE}}]\+)
+\begin{DoxyCompactList}\small\item\em Calculates the straight-\/line (Euclidean/\+\+L2) distance between two frequency vectors. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{main_8c_ae2c8216d4cc3f2acc752b6becc7a0210}{cosine\+\_\+distance}} (const double hist1\+[\doxymbox{\hyperlink{main_8c_a6572f1706059832f94025fa12c6c45ed}{ALPHABET\+\_\+\+SIZE}}]\+, const double hist2\+[\doxymbox{\hyperlink{main_8c_a6572f1706059832f94025fa12c6c45ed}{ALPHABET\+\_\+\+SIZE}}]\+)
+\begin{DoxyCompactList}\small\item\em Measures the cosine distance between two frequency distribution vectors. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8c_ae63e534e292666f15625c7cfe4d97041}{encrypt}} (char \texorpdfstring{$\ast$}{*}text, int shift)
+\begin{DoxyCompactList}\small\item\em Applies the Caesar cipher encryption by shifting letters in the alphabet. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8c_af1f66c48518aa9e67f92d3d6a0033151}{decrypt}} (char \texorpdfstring{$\ast$}{*}text, int shift)
+\begin{DoxyCompactList}\small\item\em Reverses the Caesar cipher encryption using a known shift value. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8c_afe42595b394403f74b22999d9bdef2c3}{break\+\_\+caesar\+\_\+cipher}} (const char \texorpdfstring{$\ast$}{*}text, double english\+\_\+dist\+[\doxymbox{\hyperlink{main_8c_a6572f1706059832f94025fa12c6c45ed}{ALPHABET\+\_\+\+SIZE}}]\+, int top\+\_\+shifts\+[\doxymbox{\hyperlink{main_8c_abc29bd331bb97f02ae2320419301b88c}{TOP\+\_\+N}}]\+, double top\+\_\+distances\+[\doxymbox{\hyperlink{main_8c_abc29bd331bb97f02ae2320419301b88c}{TOP\+\_\+N}}]\+, \doxymbox{\hyperlink{main_8c_a1998cf7434a04b1de2e6065d92db4059}{Distance\+Func}} dist\+\_\+func)
+\begin{DoxyCompactList}\small\item\em Performs a brute-\/force attack on a Caesar cipher using frequency analysis. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em Main execution function containing the interactive menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility for encrypting, decrypting, and breaking Caesar ciphers using frequency analysis. 
+
+
+\begin{DoxyItemize}
+\item This program provides tools to analyze text, calculate letter distributions, and perform automated decryption using various distance metrics. 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{main_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_afe42595b394403f74b22999d9bdef2c3}\index{main.c@{main.c}!break\_caesar\_cipher@{break\_caesar\_cipher}}
+\index{break\_caesar\_cipher@{break\_caesar\_cipher}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{break\_caesar\_cipher()}{break\_caesar\_cipher()}}
+{\footnotesize\ttfamily \label{main_8c_afe42595b394403f74b22999d9bdef2c3} 
+void break\+\_\+caesar\+\_\+cipher (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text}{, }\item[{double}]{english\+\_\+dist}{\+[\+ALPHABET\+\_\+\+SIZE]\+, }\item[{int}]{top\+\_\+shifts}{\+[\+TOP\+\_\+\+N]\+, }\item[{double}]{top\+\_\+distances}{\+[\+TOP\+\_\+\+N]\+, }\item[{\doxymbox{\hyperlink{main_8c_a1998cf7434a04b1de2e6065d92db4059}{Distance\+Func}}}]{dist\+\_\+func}{}\end{DoxyParamCaption})}
+
+
+
+Performs a brute-\/force attack on a Caesar cipher using frequency analysis. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em text} & The encrypted message. \\
+\hline
+{\em english\+\_\+dist} & Standard English letter frequencies. \\
+\hline
+{\em top\+\_\+shifts} & Array to store the top best shift guesses. \\
+\hline
+{\em top\+\_\+distances} & Array to store the lowest distance scores corresponding to the shifts. \\
+\hline
+{\em dist\+\_\+func} & Pointer to the distance metric function to evaluate the distributions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+top\+\_\+shifts\+[0]\+ contains the shift with the absolute lowest distance score. 
+\end{DoxyPostcond}
+
+\end{DoxyItemize}\Hypertarget{main_8c_a69e48d421f6d0fe2798a19a1252fac62}\index{main.c@{main.c}!chi\_squared\_distance@{chi\_squared\_distance}}
+\index{chi\_squared\_distance@{chi\_squared\_distance}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{chi\_squared\_distance()}{chi\_squared\_distance()}}
+{\footnotesize\ttfamily \label{main_8c_a69e48d421f6d0fe2798a19a1252fac62} 
+double chi\+\_\+squared\+\_\+distance (\begin{DoxyParamCaption}\item[{const double}]{hist1}{\+[\+ALPHABET\+\_\+\+SIZE]\+, }\item[{const double}]{hist2}{\+[\+ALPHABET\+\_\+\+SIZE]\+}\end{DoxyParamCaption})}
+
+
+
+Calculates the Chi-\/\+Squared discrepancy between two frequency distributions. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em hist1} & The observed frequency array (from the text). \\
+\hline
+{\em hist2} & The expected frequency array (e.\+g., standard English). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Chi-\/\+Square distance score. A lower value indicates higher similarity. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{main_8c_a569ba2b1701b459754653701d8a49998}\index{main.c@{main.c}!clear\_input\_buffer@{clear\_input\_buffer}}
+\index{clear\_input\_buffer@{clear\_input\_buffer}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{clear\_input\_buffer()}{clear\_input\_buffer()}}
+{\footnotesize\ttfamily \label{main_8c_a569ba2b1701b459754653701d8a49998} 
+void clear\+\_\+input\+\_\+buffer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Clears the standard input buffer (stdin). 
+
+
+\begin{DoxyItemize}
+\item Typically called after scanf to remove the trailing newline character or to handle invalid input. \begin{DoxyPostcond}{Postcondition}
+The input stream is empty up to the next newline \textquotesingle{}~\newline
+\textquotesingle{} or EOF. 
+\end{DoxyPostcond}
+
+\end{DoxyItemize}\Hypertarget{main_8c_aedaa2b62cc091ba4e2b54adc0bcdbc1a}\index{main.c@{main.c}!compute\_histogram@{compute\_histogram}}
+\index{compute\_histogram@{compute\_histogram}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{compute\_histogram()}{compute\_histogram()}}
+{\footnotesize\ttfamily \label{main_8c_aedaa2b62cc091ba4e2b54adc0bcdbc1a} 
+void compute\+\_\+histogram (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{text}{, }\item[{double}]{histogram}{\+[\+ALPHABET\+\_\+\+SIZE]\+}\end{DoxyParamCaption})}
+
+
+
+Calculates the normalized frequency of each letter (a-\/z) in a given text. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em text} & The null-\/terminated string to be analyzed. \\
+\hline
+{\em histogram} & Double array to store the resulting frequencies (0.\+0 to 1.\+0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+The text must be initialized and null-\/terminated. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The sum of all elements in the histogram is 1.\+0 (if the text contains letters). 
+\end{DoxyPostcond}
+
+\end{DoxyItemize}\Hypertarget{main_8c_ae2c8216d4cc3f2acc752b6becc7a0210}\index{main.c@{main.c}!cosine\_distance@{cosine\_distance}}
+\index{cosine\_distance@{cosine\_distance}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{cosine\_distance()}{cosine\_distance()}}
+{\footnotesize\ttfamily \label{main_8c_ae2c8216d4cc3f2acc752b6becc7a0210} 
+double cosine\+\_\+distance (\begin{DoxyParamCaption}\item[{const double}]{hist1}{\+[\+ALPHABET\+\_\+\+SIZE]\+, }\item[{const double}]{hist2}{\+[\+ALPHABET\+\_\+\+SIZE]\+}\end{DoxyParamCaption})}
+
+
+
+Measures the cosine distance between two frequency distribution vectors. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em hist1} & First frequency distribution. \\
+\hline
+{\em hist2} & Second frequency distribution. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value between 0.\+0 (identical) and 1.\+0 (completely different). 
+\end{DoxyReturn}
+\begin{DoxyPostcond}{Postcondition}
+Returns 1.\+0 if either vector has a magnitude of zero to prevent division by zero. 
+\end{DoxyPostcond}
+
+\end{DoxyItemize}\Hypertarget{main_8c_af1f66c48518aa9e67f92d3d6a0033151}\index{main.c@{main.c}!decrypt@{decrypt}}
+\index{decrypt@{decrypt}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{decrypt()}{decrypt()}}
+{\footnotesize\ttfamily \label{main_8c_af1f66c48518aa9e67f92d3d6a0033151} 
+void decrypt (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{text}{, }\item[{int}]{shift}{}\end{DoxyParamCaption})}
+
+
+
+Reverses the Caesar cipher encryption using a known shift value. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em text} & The encrypted string. \\
+\hline
+{\em shift} & The original shift used for encryption. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+The text is modified in-\/place to its original state. 
+\end{DoxyPostcond}
+
+\end{DoxyItemize}\Hypertarget{main_8c_ae63e534e292666f15625c7cfe4d97041}\index{main.c@{main.c}!encrypt@{encrypt}}
+\index{encrypt@{encrypt}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{encrypt()}{encrypt()}}
+{\footnotesize\ttfamily \label{main_8c_ae63e534e292666f15625c7cfe4d97041} 
+void encrypt (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{text}{, }\item[{int}]{shift}{}\end{DoxyParamCaption})}
+
+
+
+Applies the Caesar cipher encryption by shifting letters in the alphabet. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em text} & The string to be encrypted. \\
+\hline
+{\em shift} & The number of positions to move each letter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+The text must be a mutable character array (not a string literal). 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The text is modified in-\/place. Non-\/alphabetic characters are preserved. 
+\end{DoxyPostcond}
+
+\end{DoxyItemize}\Hypertarget{main_8c_a9ad23485c26e8007f42ad0468278d780}\index{main.c@{main.c}!euclidean\_distance@{euclidean\_distance}}
+\index{euclidean\_distance@{euclidean\_distance}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{euclidean\_distance()}{euclidean\_distance()}}
+{\footnotesize\ttfamily \label{main_8c_a9ad23485c26e8007f42ad0468278d780} 
+double euclidean\+\_\+distance (\begin{DoxyParamCaption}\item[{const double}]{hist1}{\+[\+ALPHABET\+\_\+\+SIZE]\+, }\item[{const double}]{hist2}{\+[\+ALPHABET\+\_\+\+SIZE]\+}\end{DoxyParamCaption})}
+
+
+
+Calculates the straight-\/line (Euclidean/\+\+L2) distance between two frequency vectors. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em hist1} & First frequency distribution. \\
+\hline
+{\em hist2} & Second frequency distribution. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The square root of the sum of squared differences. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8c_a840291bc02cba5474a4cb46a9b9566fe} 
+int main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Main execution function containing the interactive menu. 
+
+\begin{DoxyReturn}{Returns}
+0 on successful execution. 
+\end{DoxyReturn}
+\Hypertarget{main_8c_ace401e6e59af27a274ccf31789b68369}\index{main.c@{main.c}!read\_distribution@{read\_distribution}}
+\index{read\_distribution@{read\_distribution}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{read\_distribution()}{read\_distribution()}}
+{\footnotesize\ttfamily \label{main_8c_ace401e6e59af27a274ccf31789b68369} 
+void read\+\_\+distribution (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{filename}{, }\item[{double}]{distribution}{\+[\+ALPHABET\+\_\+\+SIZE]\+}\end{DoxyParamCaption})}
+
+
+
+Reads the standard letter distribution from a text file. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em filename} & String containing the path to the distribution file. \\
+\hline
+{\em distribution} & Double array of size ALPHABET\+\_\+\+SIZE to store frequencies. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+The filename must point to a valid, readable file. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The distribution array is populated with values from the file (0.\+0 if reading fails). 
+\end{DoxyPostcond}
+
+\end{DoxyItemize}
